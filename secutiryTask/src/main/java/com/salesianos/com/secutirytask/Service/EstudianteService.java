@@ -16,10 +16,17 @@ public class EstudianteService {
     private EstudianteRepository estudianteRepository;
 
     public Estudiante crearEstudiante(EstudianteDTO estudianteDTO) {
+        double estatura;
+        try {
+            estatura = Double.parseDouble(estudianteDTO.estatura());
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("El valor de estatura no es válido: " + estudianteDTO.estatura());
+        }
+
         Estudiante estudiante = Estudiante.builder()
                 .nombre(estudianteDTO.nombre())
                 .apellido(estudianteDTO.apellido())
-                .estatura(Double.parseDouble(estudianteDTO.estatura()))
+                .estatura(estatura)
                 .build();
 
         return estudianteRepository.save(estudiante);
