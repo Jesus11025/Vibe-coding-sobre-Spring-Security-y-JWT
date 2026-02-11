@@ -26,6 +26,7 @@ public class Estudiante {
 
     private String nombre;
     private String apellido;
+    private String email;
     private Casa casa;
     private double estatura;
     private Estatus estado;
